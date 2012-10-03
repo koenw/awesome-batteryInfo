@@ -9,38 +9,36 @@ awesome.naquadah.org
 
 Place the `battery.lua` file in the same directory as your main config file (e.g. `rc.lua`), and require it:
 
-
+```lua
     require("battery")
-
+```
 
 Add a textbox to your wibox that will contain your battery status:
 
-
+```lua
     batterywidget = widget({type = "textbox", name = "batterywidget", align = "right" }) 
+```
 
-
-
-
+```lua
     (...)
     mytextclock,
     batterywidget,
     s == 1 and mysystray or nil,
     (...)
-
+```
 
 Add a hook that will update the widget every so often:
 
-
+```lua
     awful.hooks.timer.register(60, function()
       batterywidget.text = batteryInfo("BAT0")
     end)
-
+```
 
 If you don't want to wait for the battery status to appear until the function
 gets called by the hook, add
 
-
+```lua
     batterywidget.text = batteryInfo
-
-
+```
 somewhere after the declaration of the batterywidget.
