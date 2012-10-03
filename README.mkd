@@ -1,4 +1,4 @@
-# batteryInfo
+# awesome-batteryInfo
 
 This is a small lua function that returns a formatted string with the current
 battery status. It can be used to populate a text widget in the awesome window
