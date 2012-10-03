@@ -1,0 +1,46 @@
+# batteryInfo
+
+This is a small lua function that returns a formatted string with the current
+battery status. It can be used to populate a text widget in the awesome window
+manager. Based on the "Gigamo Battery Widget" found in the wiki at
+awesome.naquadah.org
+
+## Usage
+
+Place the `battery.lua` file in the same directory as your main config file (e.g. `rc.lua`), and require it:
+
+
+    require("battery")
+
+
+Add a textbox to your wibox that will contain your battery status:
+
+
+    batterywidget = widget({type = "textbox", name = "batterywidget", align = "right" }) 
+
+
+
+
+    (...)
+    mytextclock,
+    batterywidget,
+    s == 1 and mysystray or nil,
+    (...)
+
+
+Add a hook that will update the widget every so often:
+
+
+    awful.hooks.timer.register(60, function()
+      batterywidget.text = batteryInfo("BAT0")
+    end)
+
+
+If you don't want to wait for the battery status to appear until the function
+gets called by the hook, add
+
+
+    batterywidget.text = batteryInfo
+
+
+somewhere after the declaration of the batterywidget.
