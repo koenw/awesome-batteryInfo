@@ -29,6 +29,7 @@ function batteryInfo(adapter)
     end
   else
     battery = "A/C"
+    icon = ""
   end
   return " "..icon..battery.."%".." "
 end
