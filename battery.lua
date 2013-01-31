@@ -20,9 +20,9 @@ function batteryInfo(adapter)
   elseif sta:match("Discharging") then
     icon = ""
     percent = "%"
-    if tonumber(battery) < 10 then
+    if tonumber(battery) < 15 then
       naughty.notify({ title    = "Battery Warning"
-             , text     = "Battery low!".."  "..battery.."  ".."left!"
+             , text     = "Battery low!".."  "..battery..percent.."  ".."left!"
              , timeout  = 5
              , position = "top_right"
              , fg       = beautiful.fg_focus
