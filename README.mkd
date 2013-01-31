@@ -9,16 +9,29 @@ awesome.naquadah.org
 
 Place the `battery.lua` file in the same directory as your main config file (e.g. `rc.lua`), and require it:
 
+*awesome < 3.5*
 ```lua
     require("battery")
 ```
 
+*awesome >= 3.5*
+```lua
+    local require("battery")
+```
+
 Add a textbox to your wibox that will contain your battery status:
 
+*awesome < 3.5*
 ```lua
     batterywidget = widget({type = "textbox", name = "batterywidget", align = "right" }) 
 ```
 
+*awesome >= 3.5*
+```lua
+batterywidget = wibox.widget.textbox()
+```
+
+*awesome < 3.5*
 ```lua
     (...)
     mytextclock,
@@ -27,18 +40,43 @@ Add a textbox to your wibox that will contain your battery status:
     (...)
 ```
 
+*awesome >= 3.5*
+```lua
+    (...)
+    local right_layout = wibox.layout.fixed.horizontal()
+    right_layout:add(batterywidget)
+    if s == 1 then right_layout:add(wibox.widget.systray()) end
+    (...)
+```
+
 Add a hook that will update the widget every so often:
 
+*awesome < 3.5*
 ```lua
     awful.hooks.timer.register(60, function()
       batterywidget.text = batteryInfo("BAT0")
     end)
 ```
 
-If you don't want to wait for the battery status to appear until the function
-gets called by the hook, add
+*awesome >= 3.5*
+```lua
+  batterywidget_timer = timer({timeout = 1})
+  batterywidget_timer:connect_signal("timeout", function()
+    batterywidget:set_text(batteryInfo("BAT0"))
+  end)
+  batterywidget_timer:start()
+```
 
+If you don't want to wait for the battery status to appear until the function
+gets called by the hook, add the following somewhere after the declaration of
+the batterywidget.
+
+*awesome < 3.5*
 ```lua
     batterywidget.text = batteryInfo
 ```
-somewhere after the declaration of the batterywidget.
+
+*awesome >= 3.5*
+```lua
+  batterywidget:set_text(batteryInfo("BAT0"))
+```
