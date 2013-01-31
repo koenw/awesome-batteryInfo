@@ -2,6 +2,8 @@
 -- can be used to populate a text widget in the awesome window manager. Based
 -- on the "Gigamo Battery Widget" found in the wiki at awesome.naquadah.org
 
+local naughty = require("naughty")
+
 function batteryInfo(adapter)
   local fcur = io.open("/sys/class/power_supply/"..adapter.."/energy_now")  
   local fcap = io.open("/sys/class/power_supply/"..adapter.."/energy_full")
