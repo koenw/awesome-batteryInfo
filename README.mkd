@@ -7,55 +7,55 @@ awesome.naquadah.org
 
 ## Usage
 
-Place the `battery.lua` file in the same directory as your main config file (e.g. `rc.lua`), and require it:
+### Place the `battery.lua` file in the same directory as your main config file (e.g. `rc.lua`), and require it:
 
 *awesome < 3.5*
 ```lua
-    require("battery")
+  require("battery")
 ```
 
 *awesome >= 3.5*
 ```lua
-    local require("battery")
+  local require("battery")
 ```
 
-Add a textbox to your wibox that will contain your battery status:
+### Add a textbox to your wibox that will contain your battery status:
 
 *awesome < 3.5*
 ```lua
-    batterywidget = widget({type = "textbox", name = "batterywidget", align = "right" }) 
+  batterywidget = widget({type = "textbox", name = "batterywidget", align = "right" })
 ```
 
 *awesome >= 3.5*
 ```lua
-batterywidget = wibox.widget.textbox()
+  batterywidget = wibox.widget.textbox()
 ```
 
 *awesome < 3.5*
 ```lua
-    (...)
-    mytextclock,
-    batterywidget,
-    s == 1 and mysystray or nil,
-    (...)
+  (...)
+  mytextclock,
+  batterywidget,
+  s == 1 and mysystray or nil,
+  (...)
 ```
 
 *awesome >= 3.5*
 ```lua
-    (...)
-    local right_layout = wibox.layout.fixed.horizontal()
-    right_layout:add(batterywidget)
-    if s == 1 then right_layout:add(wibox.widget.systray()) end
-    (...)
+  (...)
+  local right_layout = wibox.layout.fixed.horizontal()
+  right_layout:add(batterywidget)
+  if s == 1 then right_layout:add(wibox.widget.systray()) end
+  (...)
 ```
 
-Add a hook that will update the widget every so often:
+### Add a hook that will update the widget every so often:
 
 *awesome < 3.5*
 ```lua
-    awful.hooks.timer.register(60, function()
-      batterywidget.text = batteryInfo("BAT0")
-    end)
+  awful.hooks.timer.register(60, function()
+    batterywidget.text = batteryInfo("BAT0")
+  end)
 ```
 
 *awesome >= 3.5*
@@ -73,7 +73,7 @@ the batterywidget.
 
 *awesome < 3.5*
 ```lua
-    batterywidget.text = batteryInfo
+  batterywidget.text = batteryInfo
 ```
 
 *awesome >= 3.5*
