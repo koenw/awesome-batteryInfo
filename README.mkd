@@ -26,12 +26,6 @@ awesome.naquadah.org
   batterywidget = widget({type = "textbox", name = "batterywidget", align = "right" })
 ```
 
-*awesome >= 3.5*
-```lua
-  batterywidget = wibox.widget.textbox()
-```
-
-*awesome < 3.5*
 ```lua
   (...)
   mytextclock,
@@ -41,6 +35,10 @@ awesome.naquadah.org
 ```
 
 *awesome >= 3.5*
+```lua
+  batterywidget = wibox.widget.textbox()
+```
+
 ```lua
   (...)
   local right_layout = wibox.layout.fixed.horizontal()
