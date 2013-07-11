@@ -16,7 +16,7 @@ awesome.naquadah.org
 
 *awesome >= 3.5*
 ```lua
-  local require("battery")
+  local battery = require("battery")
 ```
 
 ### Add a textbox to your wibox that will contain your battery status:
