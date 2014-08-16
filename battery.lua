@@ -5,6 +5,18 @@
 local naughty = require("naughty")
 local beautiful = require("beautiful")
 
+function readBatFile(adapter, ...)
+  local basepath = "/sys/class/power_supply/"..adapter.."/"
+  for i, name in pairs(arg) do
+    file = io.open(basepath..name, "r")
+    if file then
+      local str = file:read()
+      file:close()
+      return str
+    end
+  end
+end
+
 function batteryInfo(adapter)
   local fh = io.open("/sys/class/power_supply/"..adapter.."/present", "r")
   if fh == nil then
@@ -12,17 +24,11 @@ function batteryInfo(adapter)
     icon = ""
     percent = ""
   else
-    local fcur = io.open("/sys/class/power_supply/"..adapter.."/energy_now")  
-    local fcap = io.open("/sys/class/power_supply/"..adapter.."/energy_full")
-    local fsta = io.open("/sys/class/power_supply/"..adapter.."/status")
-    local cur = fcur:read()
-    local cap = fcap:read()
-    local sta = fsta:read()
-    fcur:close()
-    fcap:close()
-    fsta:close()
+    local cur = readBatFile(adapter, "charge_now", "energy_now")
+    local cap = readBatFile(adapter, "charge_full", "energy_full")
+    local sta = readBatFile(adapter, "status")
     battery = math.floor(cur * 100 / cap)
-  
+
     if sta:match("Charging") then
       icon = "⚡"
       percent = "%"
