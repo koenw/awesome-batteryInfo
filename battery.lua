@@ -12,7 +12,7 @@ function batteryInfo(adapter)
     icon = ""
     percent = ""
   else
-    local fcur = io.open("/sys/class/power_supply/"..adapter.."/energy_now")  
+    local fcur = io.open("/sys/class/power_supply/"..adapter.."/energy_now")
     local fcap = io.open("/sys/class/power_supply/"..adapter.."/energy_full")
     local fsta = io.open("/sys/class/power_supply/"..adapter.."/status")
     local cur = fcur:read()
@@ -22,7 +22,7 @@ function batteryInfo(adapter)
     fcap:close()
     fsta:close()
     battery = math.floor(cur * 100 / cap)
-  
+
     if sta:match("Charging") then
       icon = "⚡"
       percent = "%"
@@ -38,6 +38,11 @@ function batteryInfo(adapter)
                , bg       = beautiful.bg_focus
         })
       end
+    else
+      -- If we are neither charging nor discharging, assume that we are on A/C
+      battery = "A/C"
+      icon = ""
+      percent = ""
     end
   end
   return " "..icon..battery..percent.." "
