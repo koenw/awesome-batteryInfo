@@ -44,6 +44,11 @@ function batteryInfo(adapter)
                , bg       = beautiful.bg_focus
         })
       end
+    else
+      -- If we are neither charging nor discharging, assume that we are on A/C
+      battery = "A/C"
+      icon = ""
+      percent = ""
     end
   end
   return " "..icon..battery..percent.." "
