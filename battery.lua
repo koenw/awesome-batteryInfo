@@ -7,7 +7,7 @@ local beautiful = require("beautiful")
 
 function readBatFile(adapter, ...)
   local basepath = "/sys/class/power_supply/"..adapter.."/"
-  for i, name in pairs(arg) do
+  for i, name in pairs({...}) do
     file = io.open(basepath..name, "r")
     if file then
       local str = file:read()
