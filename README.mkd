@@ -71,7 +71,7 @@ the batterywidget.
 
 *awesome < 3.5*
 ```lua
-  batterywidget.text = batteryInfo
+  batterywidget.text = batteryInfo("BAT0")
 ```
 
 *awesome >= 3.5*
