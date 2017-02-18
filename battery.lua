@@ -50,6 +50,9 @@ function batteryInfo(adapter)
       icon = ""
       percent = ""
     end
+
+    -- fix 'too many open files' bug on awesome 4.0
+    fh:close()
   end
   return " "..icon..battery..percent.." "
 end
